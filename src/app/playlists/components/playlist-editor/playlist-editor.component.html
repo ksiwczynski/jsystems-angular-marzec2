@@ -6,10 +6,12 @@
     <input
       type="text"
       class="w-full"
-      [value]="playlist.name"
       #playlistNameRef
+      [value]="playlist.name"
+      (input)="playlist.name = $any($event.target).value"
     />
 
+    <span class="float-end">{{ playlist.name.length }} / 100</span>
     <span class="float-end">{{ playlistNameRef.value.length }} / 100</span>
   </div>
 
