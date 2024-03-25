@@ -8,6 +8,7 @@ import { PlaylistListComponent } from './components/playlist-list/playlist-list.
 import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
 import { PlaylistEditorComponent } from './components/playlist-editor/playlist-editor.component';
 
+import { MatListModule } from '@angular/material/list'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PlaylistEditorComponent } from './components/playlist-editor/playlist-e
     PlaylistEditorComponent
   ],
   imports: [
+    MatListModule,
     CommonModule,
     PlaylistsRoutingModule
   ]
