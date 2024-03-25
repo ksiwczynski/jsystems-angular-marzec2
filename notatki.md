@@ -66,3 +66,21 @@ ng new jsystems-rossmann-angular --directory "." --standalone false
 ## Material Design
 ng add @angular/material
 https://material.angular.io/guide/getting-started
+
+# ng generate - Schematics 
+ng g --help
+ng generate
+
+ng g c --help
+ng g m --help
+
+# Playlists module
+ng g m playlists -m app --route playlists --routing
+
+ng g c playlists/containers/playlists-view
+
+ng g c playlists/components/playlist-list
+ng g c playlists/components/playlist-details
+ng g c playlists/components/playlist-editor
+
+
