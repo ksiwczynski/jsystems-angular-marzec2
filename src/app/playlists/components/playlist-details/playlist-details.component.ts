@@ -10,7 +10,7 @@ export class PlaylistDetailsComponent {
   playlist = {
     id: '123',
     name: 'Playlist 123',
-    public: false,
+    public: true,
     description: 'Long description...',
   };
 

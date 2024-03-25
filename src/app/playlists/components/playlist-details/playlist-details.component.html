@@ -11,10 +11,34 @@
 
     <mat-list-item lines="2">
       <span matListItemTitle>Public</span>
-      <!-- warunek? wartoscPrawdziwa: wartoscInna  -->
+
       <span [style.color]="playlist.public ? 'red' : 'green'">{{
         playlist.public ? "Yes" : "No"
       }}</span>
+
+      <span [class]="playlist.public ? 'isPublic' : 'isPrivate'">{{
+        playlist.public ? "Yes" : "No"
+      }}</span>
+
+      <span
+        [class.isPublic]="playlist.public"
+        [class.isPrivate]="!playlist.public"
+        >{{ playlist.public ? "Yes" : "No" }}
+      </span>
+
+      <span
+        [ngStyle]="{
+          color: playlist.public ? 'red' : 'green',
+        }"
+        >{{ playlist.public ? "Yes" : "No" }}</span
+      >
+      <span
+        [ngClass]="{
+            isPublic: playlist.public,
+            isPrivate: !playlist.public,
+        }"
+        >{{ playlist.public ? "Yes" : "No" }}
+      </span>
     </mat-list-item>
 
     <mat-list-item lines="3">
