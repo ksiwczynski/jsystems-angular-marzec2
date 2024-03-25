@@ -22,22 +22,25 @@ export class ContenteditableDirective implements ControlValueAccessor {
     // private model: NgModel,  /// <<--- Cyclical dep
     private elem: ElementRef<HTMLElement>
   ) {
+    this.elem.nativeElement.contentEditable = 'false';
     console.log(elem);
   }
 
   writeValue(obj: any): void {
     this.elem.nativeElement.innerHTML = obj;
   }
+  
   registerOnChange(fn: any): void {
     this.elem.nativeElement.addEventListener('input', (e) =>
       fn(this.elem.nativeElement.innerHTML)
     );
   }
+
   registerOnTouched(fn: any): void {
     this.elem.nativeElement.addEventListener('blur', (e) => fn());
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.elem.nativeElement.contentEditable = isDisabled ? 'false' : 'true';
   }
 }
