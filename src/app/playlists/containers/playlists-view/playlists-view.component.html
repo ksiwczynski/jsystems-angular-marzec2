@@ -2,20 +2,16 @@
 
 <div class="container">
   <div class="grid grid-cols-2">
-    
     <div>
       <app-playlist-list />
     </div>
 
     <div>
+      <app-playlist-details [hidden]="mode !== 'details'" />
+      <app-playlist-editor [hidden]="mode !== 'editor'" />
 
-      <app-playlist-details />
-      <app-playlist-editor [hidden]="true"/>
-
-      
-      <button>Details</button>
-      <button>Edit</button>
+      <button (click)="showDetails()">Details</button>
+      <button (click)="showEditor()">Edit</button>
     </div>
-
   </div>
 </div>
