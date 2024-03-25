@@ -7,9 +7,10 @@
       type="text"
       class="w-full"
       #playlistNameRef
-      [ngModel]="playlist.name"
-      />
-      <!-- [value]="playlist.name"
+      [(ngModel)]="playlist.name"
+    />
+    <!-- [ngModel]="playlist.name" (ngModelChange)=" playlist.name = $event " -->
+    <!-- [value]="playlist.name"
       (input)="playlist.name = $any($event.target).value" -->
 
     <span class="float-end">{{ playlist.name.length }} / 100</span>
