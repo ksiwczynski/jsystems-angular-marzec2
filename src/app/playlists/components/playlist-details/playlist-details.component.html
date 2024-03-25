@@ -26,12 +26,20 @@
         >{{ playlist.public ? "Yes" : "No" }}
       </span>
 
+      <!-- 
+        s = new NgStyle({<span/>})
+        s.ngStyle = {
+          color: playlist.public ? 'red' : 'green',
+        }
+        s.ngDoCheck()
+       -->
       <span
         [ngStyle]="{
           color: playlist.public ? 'red' : 'green',
         }"
         >{{ playlist.public ? "Yes" : "No" }}</span
       >
+
       <span
         [ngClass]="{
             isPublic: playlist.public,
