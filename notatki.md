@@ -18,7 +18,21 @@ Help -> About
 # GIT
 git clone https://bitbucket.org/ev45ive/jsystems-angular-marzec2.git
 
+F1 -> Git:Clone -> Paste -> Clone from URL -> Select location -> Open 
+
+git pull -f 
+npm i 
+
 # Angular CLI
 npm i -g @angular/cli
+ 
+https://angular.io/cli/
 
-jsystems-angular-marzec
+ng version
+ng help
+
+ng generate --help
+ng new --help
+
+ng new jsystems-rossmann-angular --directory "." --routing --style "scss" --standalone false 
+ng new jsystems-rossmann-angular --directory "." --standalone false 
