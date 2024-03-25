@@ -62,3 +62,7 @@ ng new --help
 
 ng new jsystems-rossmann-angular --directory "." --routing --style "scss" --standalone false 
 ng new jsystems-rossmann-angular --directory "." --standalone false 
+
+## Material Design
+ng add @angular/material
+https://material.angular.io/guide/getting-started

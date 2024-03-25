@@ -6,6 +6,7 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -16,17 +17,11 @@ import { AppComponent } from './app.component';
     AppRoutingModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [
     AppComponent
-  ],
-  // bootstrap: [HeaderComponent, MainComponent, SidebarComponent]
+  ]
 })
 export class AppModule {}
-
-// export class AppModule implements DoBootstrap {
-//   ngDoBootstrap(appRef: ApplicationRef): void {
-//     appRef.bootstrap(AppComponent, ['app-root']);
-//   }
-// }
