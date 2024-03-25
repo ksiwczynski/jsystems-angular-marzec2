@@ -18,17 +18,4 @@ export class PlaylistEditorComponent {
     public: true,
     description: 'Long description...',
   };
-
-  constructor(private cdr: ChangeDetectorRef, private app: ApplicationRef) {}
-
-  updateName($event: Event) {
-    // this.app.tick()
-    // cossiestalo.subscribe (() => this.cdr.detectChanges())
-
-    // this.playlist.name = ($event.target as HTMLInputElement).value;
-
-    if ($event.target instanceof HTMLInputElement) {
-      this.playlist.name = $event.target.value;
-    }
-  }
 }

@@ -8,7 +8,7 @@ import { PlaylistListComponent } from './components/playlist-list/playlist-list.
 import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
 import { PlaylistEditorComponent } from './components/playlist-editor/playlist-editor.component';
 
-import { MatListModule } from '@angular/material/list'
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,8 @@ import { MatListModule } from '@angular/material/list'
     PlaylistEditorComponent
   ],
   imports: [
-    MatListModule,
-    CommonModule,
-    PlaylistsRoutingModule
+    PlaylistsRoutingModule,
+    SharedModule
   ]
 })
 export class PlaylistsModule { }

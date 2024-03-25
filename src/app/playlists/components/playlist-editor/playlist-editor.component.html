@@ -7,9 +7,10 @@
       type="text"
       class="w-full"
       #playlistNameRef
-      [value]="playlist.name"
-      (input)="playlist.name = $any($event.target).value"
-    />
+      [ngModel]="playlist.name"
+      />
+      <!-- [value]="playlist.name"
+      (input)="playlist.name = $any($event.target).value" -->
 
     <span class="float-end">{{ playlist.name.length }} / 100</span>
     <span class="float-end">{{ playlistNameRef.value.length }} / 100</span>
@@ -18,12 +19,12 @@
   <div>
     <label for=""
       >Public
-      <input type="checkbox" [checked]="playlist.public" (click)="(0)" />
+      <input type="checkbox" [ngModel]="playlist.public" />
     </label>
   </div>
 
   <div>
     <label for="">Description</label>
-    <textarea class="w-full" [value]="playlist.description"></textarea>
+    <textarea class="w-full" [ngModel]="playlist.description"></textarea>
   </div>
 </div>
