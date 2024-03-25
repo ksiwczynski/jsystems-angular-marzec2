@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: /* playlists/ */ '',
     component: PlaylistsComponent,
-    children: [ 
+    children: [
       {
         path: '',
         component: PlaylistsViewComponent,
