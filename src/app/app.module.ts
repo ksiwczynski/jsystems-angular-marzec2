@@ -8,12 +8,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [provideClientHydration()],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule
+  ],
+  providers: [
+    provideClientHydration()
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  // bootstrap: [HeaderComponent, MainComponent, SidebarComponent]
 })
-export class AppModule{}
+export class AppModule {}
 
 // export class AppModule implements DoBootstrap {
 //   ngDoBootstrap(appRef: ApplicationRef): void {
