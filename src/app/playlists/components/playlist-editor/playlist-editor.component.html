@@ -9,9 +9,6 @@
       #playlistNameRef
       [(ngModel)]="playlist.name"
     />
-    <!-- [ngModel]="playlist.name" (ngModelChange)=" playlist.name = $event " -->
-    <!-- [value]="playlist.name"
-      (input)="playlist.name = $any($event.target).value" -->
 
     <span class="float-end">{{ playlist.name.length }} / 100</span>
     <span class="float-end">{{ playlistNameRef.value.length }} / 100</span>
@@ -20,12 +17,15 @@
   <div>
     <label for=""
       >Public
-      <input type="checkbox" [ngModel]="playlist.public" />
+      <input type="checkbox" [(ngModel)]="playlist.public" />
     </label>
   </div>
 
+  <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.io/errors/NG01203 -->
+  <div contenteditable="true" [(ngModel)]="playlist.description">Ala ma kota</div>
+
   <div>
     <label for="">Description</label>
-    <textarea class="w-full" [ngModel]="playlist.description"></textarea>
+    <textarea class="w-full" [(ngModel)]="playlist.description"></textarea>
   </div>
 </div>
