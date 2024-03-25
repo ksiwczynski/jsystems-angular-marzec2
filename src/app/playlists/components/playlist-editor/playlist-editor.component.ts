@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 
 @Component({
   selector: 'app-playlist-editor',
@@ -14,7 +19,12 @@ export class PlaylistEditorComponent {
     description: 'Long description...',
   };
 
+  constructor(private cdr: ChangeDetectorRef, private app: ApplicationRef) {}
+
   updateName($event: Event) {
+    // this.app.tick()
+    // cossiestalo.subscribe (() => this.cdr.detectChanges())
+
     // this.playlist.name = ($event.target as HTMLInputElement).value;
 
     if ($event.target instanceof HTMLInputElement) {
