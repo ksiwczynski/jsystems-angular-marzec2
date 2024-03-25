@@ -1,16 +1,22 @@
-<pre>{{playlist | json }}</pre>
+<pre>{{ playlist | json }}</pre>
 
 <div class="flex flex-col gap-4 pr-3">
   <div>
     <label for="">Name</label>
-    <input type="text" class="w-full" [value]="playlist.name" #playlistNameRef/>
-    
-    <span class="float-end">{{playlistNameRef.value.length}} / 100</span>
+    <input
+      type="text"
+      class="w-full"
+      [value]="playlist.name"
+      #playlistNameRef
+    />
+
+    <span class="float-end">{{ playlistNameRef.value.length }} / 100</span>
   </div>
 
   <div>
-    <label for="">Public
-      <input type="checkbox" [checked]="playlist.public" />
+    <label for=""
+      >Public
+      <input type="checkbox" [checked]="playlist.public" (click)="(0)" />
     </label>
   </div>
 

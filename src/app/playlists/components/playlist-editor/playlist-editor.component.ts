@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './playlist-editor.component.scss',
 })
 export class PlaylistEditorComponent {
+
   playlist = {
     id: '123',
     name: 'Playlist 123',
     public: true,
     description: 'Long description...',
   };
+
+  
 }
