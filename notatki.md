@@ -23,6 +23,32 @@ F1 -> Git:Clone -> Paste -> Clone from URL -> Select location -> Open
 git pull -f 
 npm i 
 
+# Extensions
+
+Angular Language Service
+https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
+
+Angular 10 Snippets - Mikael Morlund
+https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode
+
+Prettier
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+Paste JSON as Code - quicktype
+https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
+
+https://angular.dev/tools/devtools
+https://chrome.google.com/webstore/detail/angular-developer-tools/ienfalfjdbdpebioblfackkekamfmbnh
+
+# ANgular
+
+https://angular.dev/
+https://angular.dev/tutorials
+https://angular.dev/tools/cli
+https://angular.dev/tools/language-service
+
+
+
 # Angular CLI
 npm i -g @angular/cli
  
