@@ -78,6 +78,7 @@ ng g m --help
 ng g m playlists -m app --route playlists --routing
 
 ng g c playlists/containers/playlists-view
+ng g c playlists/containers/playlists-tracks-view
 
 ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-details
@@ -86,3 +87,18 @@ ng g c playlists/components/playlist-editor
 ng g m shared -m app
 ng g c shared/components/clock --export 
 ng g d shared/directives/contenteditable --export 
+
+# Music "module" --standalone
+
+ng g m music -m app --route music --routing
+
+ng g c music/containers/album-detail-view --standalone true
+ng g c music/containers/album-search-view --standalone true
+
+ng g c music/components/album-card --standalone true
+ng g c music/components/results-grid --standalone true
+ng g c music/components/search-form --standalone true
+
+ng g m core -m app
+ng g s core/services/music-api
+
