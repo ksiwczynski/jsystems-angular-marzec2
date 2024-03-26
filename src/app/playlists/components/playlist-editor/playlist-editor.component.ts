@@ -1,10 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
   SimpleChanges,
+  ViewChild,
+  viewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 
@@ -32,10 +35,13 @@ export class PlaylistEditorComponent {
     this.save.emit(this.playlist);
   }
 
+  @ViewChild('playlistNameRef')
+  nameInputRef?: ElementRef<HTMLInputElement>;
+
   constructor() {
     console.log('constructor');
   }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     console.log('ngOnChanges', changes);
@@ -51,6 +57,7 @@ export class PlaylistEditorComponent {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     console.log('ngAfterViewInit');
+    this.nameInputRef?.nativeElement.focus();
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
