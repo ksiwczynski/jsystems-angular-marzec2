@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 
@@ -29,5 +30,30 @@ export class PlaylistEditorComponent {
 
   submit() {
     this.save.emit(this.playlist);
+  }
+
+  constructor() {
+    console.log('constructor');
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    console.log('ngOnChanges', changes);
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    console.log('ngOnInit');
+  }
+  ngDoCheck(): void {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    console.log('ngDoCheck');
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    console.log('ngAfterViewInit');
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    console.log('ngOnDestroy');
   }
 }
