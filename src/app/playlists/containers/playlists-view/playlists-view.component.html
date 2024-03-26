@@ -7,39 +7,47 @@
     </div>
 
     <div>
-      <!-- <ng-template [ngIf]="mode === 'details'" [ngIfElse]="editorTpl">
-        <app-playlist-details /> {{mode}}
-      </ng-template> -->
-
-      <!-- <ng-template [ngTemplateOutlet]="detailsTpl" /> -->
-
-      <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsTpl" [ngIfElse]="editorTpl"></ng-template>
-
       
-      <!-- <ng-template [ngIf]="mode === 'details'">  -->
-      <!-- <app-playlist-details *ngIf="mode === 'details'" /> -->
+      <ng-container ngSwitch="mode">
+        
+          <app-playlist-details ngSwitchCase="details" />
 
-      <ng-container *ngIf="mode === 'details' then detailsTpl else editorTpl"  />
-
-      <!-- 
-      ngIf = new NgIf(containerRef, templateRef)
-      ngIf.ngIf = mode === 'details'
-      ngIf.ngIfThen = detailsTpl
-      ngIf.ngIfElse = editorTpl
-      ngIf.doCheck() -->
-
-      <ng-template #detailsTpl>
-        <app-playlist-details />
-      </ng-template>
-
-      <ng-template #editorTpl>
-        <app-playlist-editor />
-      </ng-template>
-
-      <!-- app-routing.module.ts:14 ERROR Error: NG0201: No provider for _TemplateRef found. Find more at https://angular.io/errors/NG0201 -->
+          <app-playlist-editor ngSwitchCase="editor" />
+      </ng-container>
+      
 
       <button (click)="showDetails()">Details</button>
       <button (click)="showEditor()">Edit</button>
     </div>
   </div>
 </div>
+<!-- <ng-template [ngIf]="mode === 'details'" [ngIfElse]="editorTpl">
+  <app-playlist-details /> {{mode}}
+</ng-template> -->
+
+<!-- <ng-template [ngTemplateOutlet]="detailsTpl" /> -->
+
+<!-- <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsTpl" [ngIfElse]="editorTpl"></ng-template> -->
+
+
+<!-- <ng-template [ngIf]="mode === 'details'">  -->
+<!-- <app-playlist-details *ngIf="mode === 'details'" /> -->
+
+<!-- <ng-container *ngIf="mode === 'details' then detailsTpl else editorTpl"  /> -->
+
+<!-- 
+ngIf = new NgIf(containerRef, templateRef)
+ngIf.ngIf = mode === 'details'
+ngIf.ngIfThen = detailsTpl
+ngIf.ngIfElse = editorTpl
+ngIf.doCheck() -->
+
+<!-- <ng-template #detailsTpl>
+  <app-playlist-details />
+</ng-template> -->
+
+<!-- <ng-template #editorTpl>
+  <app-playlist-editor />
+</ng-template> -->
+
+<!-- app-routing.module.ts:14 ERROR Error: NG0201: No provider for _TemplateRef found. Find more at https://angular.io/errors/NG0201 -->
