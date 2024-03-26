@@ -8,17 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
-// import { PlatformModule } from '@angular/cdk/platform';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    // PlatformModule,
     BrowserModule, 
     AppRoutingModule,
     SharedModule,
+    CoreModule,
   ],
   providers: [
     provideClientHydration(),
