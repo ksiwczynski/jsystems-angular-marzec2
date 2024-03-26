@@ -10,8 +10,9 @@ import {
   viewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
-import { NgModel } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { NgForm, NgModel } from '@angular/forms';
+
+NgForm
 
 const EMPTY_PLAYLIST: Playlist = {
   id: '',
@@ -34,14 +35,20 @@ export class PlaylistEditorComponent {
   @Output() save = new EventEmitter<Playlist>();
 
   submit() {
+    // this.formRef?.controls['name'].value
+    this.formRef?.value
+
     this.save.emit(this.playlist);
   }
 
   @ViewChild('playlistNameRef')
   nameInputRef?: ElementRef<HTMLInputElement>;
 
-  @ViewChild('nameModelRef') /* directive "exportAs" */
+  @ViewChild('nameModelRef') /* "exportAs" = ngModel*/
   nameModelRef?: NgModel;
+
+  @ViewChild(NgForm) /* "exportAs" = ngForm */
+  formRef?: NgForm;
 
   constructor() {
     // console.log('constructor');

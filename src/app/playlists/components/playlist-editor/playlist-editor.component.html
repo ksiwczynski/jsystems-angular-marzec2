@@ -1,43 +1,54 @@
 <pre>{{ playlist | json }}</pre>
+<pre>{{ formRef.value | json }}</pre>
 
-<div class="flex flex-col gap-4 pr-3">
+<form #formRef="ngForm" class="flex flex-col gap-4 pr-3" (ngSubmit)="submit()">
   <div>
     <label for="">Name</label>
     <input
       type="text"
       class="w-full"
-      
       #playlistNameRef
-      
       #nameModelRef="ngModel"
-
       [ngModel]="playlist.name"
+      name="name"
     />
 
     <span class="float-end">{{ nameModelRef.value?.length }} / 100</span>
   </div>
 
   <div>
-    <label for=""
-      >Public
-      <input type="checkbox" [ngModel]="playlist.public" />
+    <label
+      >Public<input type="checkbox" [ngModel]="playlist.public" name="public" />
     </label>
   </div>
 
   <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.io/errors/NG01203 -->
-  <div contenteditable="true" [ngModel]="playlist.description">
+  <div
+    contenteditable="true"
+    [ngModel]="playlist.description"
+    name="description"
+  >
     Ala ma kota
   </div>
 
   <div>
     <label for="">Description</label>
-    <textarea class="w-full" [ngModel]="playlist.description"></textarea>
+    <textarea
+      class="w-full"
+      [ngModel]="playlist.description"
+      name="description"
+    ></textarea>
   </div>
 
   <div class="flex content-between">
-    <button mat-raised-button color="warn" (click)="cancel.emit()">
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="cancel.emit()"
+    >
       Cancel
     </button>
-    <button mat-raised-button color="primary" (click)="submit()">Save</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
   </div>
-</div>
+</form>
