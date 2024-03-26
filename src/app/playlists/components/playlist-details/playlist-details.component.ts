@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Playlist } from '../playlist-list/Playlist';
 
 @Component({
   selector: 'app-playlist-details',
@@ -6,12 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './playlist-details.component.scss',
 })
 export class PlaylistDetailsComponent {
+  // @Input() playlist: Playlist = EMPTY_PLAYLIST
+  // @Input() playlist?: Playlist;
+  // @Input() playlist!: Playlist;
 
-  playlist = {
-    id: '123',
-    name: 'Playlist 123',
-    public: true,
-    description: 'Long description...',
-  };
-
+  @Input({ required: true }) playlist!: Playlist;
 }
