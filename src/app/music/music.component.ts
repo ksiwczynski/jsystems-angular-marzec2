@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-music',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './music.component.html',
+  template: `<router-outlet />`,
   styleUrl: './music.component.scss',
 })
 export class MusicComponent {}
