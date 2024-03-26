@@ -8,13 +8,6 @@
         [selectedId]="selected.id"
         (selectedIdChange)="selectPlaylistById($event)"
       />
-      <app-playlist-list [items]="playlists" [(selectedId)]="selectedId" />
-
-      <input
-        type="text"
-        [value]="playlists[0].name"
-        (keyup)="playlists[0].name = $any($event.target).value"
-      />
     </div>
 
     <div>
@@ -27,8 +20,6 @@
         }
       }
 
-      <button (click)="showDetails()">Details</button>
-      <button (click)="showEditor()">Edit</button>
     </div>
   </div>
 </div>

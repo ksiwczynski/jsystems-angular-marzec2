@@ -35,15 +35,15 @@
        -->
       <span
         [ngStyle]="{
-          color: playlist.public ? 'red' : 'green',
+          color: playlist.public ? 'red' : 'green'
         }"
         >{{ playlist.public ? "Yes" : "No" }}</span
       >
 
       <span
         [ngClass]="{
-            isPublic: playlist.public,
-            isPrivate: !playlist.public,
+          isPublic: playlist.public,
+          isPrivate: !playlist.public
         }"
         >{{ playlist.public ? "Yes" : "No" }}
       </span>
@@ -57,6 +57,5 @@
     </mat-list-item>
   </mat-list>
 
-  <!-- Won`t work: -->
-  <!-- {{ if(){} else(){} while(){} for{} switch{} function(){} class{} }} -->
+  <button mat-raised-button color="primary">Edit</button>
 </div>

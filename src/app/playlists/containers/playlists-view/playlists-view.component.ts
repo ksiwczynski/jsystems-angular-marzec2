@@ -25,4 +25,8 @@ export class PlaylistsViewComponent {
   showEditor() {
     this.mode = 'editor';
   }
+
+  savePlaylist(draft: Playlist) {
+    console.log('Saving', draft);
+  }
 }

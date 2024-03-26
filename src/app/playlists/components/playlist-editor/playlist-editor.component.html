@@ -7,8 +7,7 @@
       type="text"
       class="w-full"
       #playlistNameRef
-
-      [(ngModel)]="playlist.name" 
+      [(ngModel)]="playlist.name"
     />
 
     <span class="float-end">{{ playlist.name.length }} / 100</span>
@@ -16,16 +15,24 @@
   </div>
 
   <div>
-    <label for="">Public
+    <label for=""
+      >Public
       <input type="checkbox" [(ngModel)]="playlist.public" />
     </label>
   </div>
 
   <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.io/errors/NG01203 -->
-  <div contenteditable="true" [(ngModel)]="playlist.description">Ala ma kota</div>
+  <div contenteditable="true" [(ngModel)]="playlist.description">
+    Ala ma kota
+  </div>
 
   <div>
     <label for="">Description</label>
     <textarea class="w-full" [(ngModel)]="playlist.description"></textarea>
+  </div>
+
+  <div class="flex content-between">
+    <button mat-raised-button color="warn">Cancel</button>
+    <button mat-raised-button color="primary">Save</button>
   </div>
 </div>
