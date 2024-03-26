@@ -11,7 +11,25 @@
       #nameModelRef="ngModel"
       [ngModel]="playlist.name"
       name="name"
+      required
+      minlength="3"
+      pattern="[A-Z].*"
     />
+    <pre>{{ nameModelRef.errors | json }}</pre>
+
+    @if (nameModelRef.dirty || nameModelRef.touched || formRef.submitted) {
+      @if (nameModelRef.hasError("required")) {
+        <div class="text-red-500">Field required</div>
+      }
+      @if (nameModelRef.getError("minlength"); as error) {
+        <div class="text-red-500">
+          Name length minimum {{ error.requiredLength }}
+        </div>
+      }
+      @if (nameModelRef.hasError("pattern")) {
+        <div class="text-red-500">Must be titlecase</div>
+      }
+    }
 
     <span class="float-end">{{ nameModelRef.value?.length }} / 100</span>
   </div>
