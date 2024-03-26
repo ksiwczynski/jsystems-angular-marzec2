@@ -10,6 +10,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
+import { NgModel } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 const EMPTY_PLAYLIST: Playlist = {
   id: '',
@@ -37,6 +39,9 @@ export class PlaylistEditorComponent {
 
   @ViewChild('playlistNameRef')
   nameInputRef?: ElementRef<HTMLInputElement>;
+
+  @ViewChild('nameModelRef') /* directive "exportAs" */
+  nameModelRef?: NgModel;
 
   constructor() {
     // console.log('constructor');

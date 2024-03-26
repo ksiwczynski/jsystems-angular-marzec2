@@ -6,11 +6,15 @@
     <input
       type="text"
       class="w-full"
+      
       #playlistNameRef
+      
+      #nameModelRef="ngModel"
+
       [ngModel]="playlist.name"
     />
 
-    <span class="float-end">{{ playlistNameRef.value.length }} / 100</span>
+    <span class="float-end">{{ nameModelRef.value?.length }} / 100</span>
   </div>
 
   <div>
