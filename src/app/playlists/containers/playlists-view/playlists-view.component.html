@@ -13,12 +13,20 @@
 
       <!-- <ng-template [ngTemplateOutlet]="detailsTpl" /> -->
 
-      <ng-template
-        [ngIf]="mode === 'details'"
-        [ngIfThen]="detailsTpl"
-        [ngIfElse]="editorTpl"
-      >
-      </ng-template>
+      <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsTpl" [ngIfElse]="editorTpl"></ng-template>
+
+      
+      <!-- <ng-template [ngIf]="mode === 'details'">  -->
+      <!-- <app-playlist-details *ngIf="mode === 'details'" /> -->
+
+      <ng-container *ngIf="mode === 'details' then detailsTpl else editorTpl"  />
+
+      <!-- 
+      ngIf = new NgIf(containerRef, templateRef)
+      ngIf.ngIf = mode === 'details'
+      ngIf.ngIfThen = detailsTpl
+      ngIf.ngIfElse = editorTpl
+      ngIf.doCheck() -->
 
       <ng-template #detailsTpl>
         <app-playlist-details />
