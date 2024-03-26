@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Playlist } from '../playlist-list/Playlist';
+
+const EMPTY_PLAYLIST: Playlist = {
+  id: '',
+  name: '',
+  public: false,
+  description: '',
+};
 
 @Component({
   selector: 'app-playlist-editor',
@@ -7,10 +15,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush, // ♪ ♫ (( d[-_-]b )) ♪ ♫
 })
 export class PlaylistEditorComponent {
-  playlist = {
-    id: '123',
-    name: 'Playlist 123',
-    public: true,
-    description: 'Long description...',
-  };
+  @Input() playlist: Playlist = EMPTY_PLAYLIST;
 }
