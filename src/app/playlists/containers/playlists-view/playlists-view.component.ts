@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Playlist } from '../../components/playlist-list/Playlist';
+import { mockPlaylists } from '../../components/playlist-list/mockPlaylists';
 
 @Component({
   selector: 'app-playlists-view',
@@ -8,11 +10,14 @@ import { Component } from '@angular/core';
 export class PlaylistsViewComponent {
   mode: 'details' | 'editor' = 'details';
 
+  playlists: Playlist[] = mockPlaylists;
+  selectedId = '';
+
   showDetails() {
-    this.mode = 'details'
+    this.mode = 'details';
   }
 
   showEditor() {
-    this.mode = 'editor'
+    this.mode = 'editor';
   }
 }

@@ -3,22 +3,22 @@
 <div class="container">
   <div class="grid grid-cols-2">
     <div>
-      <app-playlist-list />
+      
+      <app-playlist-list [items]="playlists" />
+
+      <input type="text" [value]="playlists[0].name" />
+
     </div>
 
     <div>
-      
-      <!-- {{text}} [prop] (event) #localRef |pipe *template  -->
-
       @switch (mode) {
-        @case ('editor') {
-          <app-playlist-editor/>
+        @case ("editor") {
+          <app-playlist-editor />
         }
         @default {
-          <app-playlist-details/>
+          <app-playlist-details />
         }
       }
- 
 
       <button (click)="showDetails()">Details</button>
       <button (click)="showEditor()">Edit</button>
