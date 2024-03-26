@@ -5,11 +5,12 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { ClockComponent } from './components/clock/clock.component';
 import { ContenteditableDirective } from './forms/contenteditable.directive';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     ClockComponent, 
-    ContenteditableDirective
+    ContenteditableDirective, PageNotFoundComponent
   ],
   imports: [
     MatListModule, 
@@ -22,6 +23,7 @@ import { ContenteditableDirective } from './forms/contenteditable.directive';
     CommonModule,
     ClockComponent,
     ContenteditableDirective,
+    PageNotFoundComponent,
   ],
 })
 export class SharedModule {}
