@@ -1,15 +1,6 @@
-<!-- <mat-list>
-  <mat-list-item
-    lines="2"
-    *ngFor="let playlist of playlists; index as i; trackBy: indexById"
-  >
-    <span matListItemTitle>{{ i + 1 }}. {{ playlist.name }}</span>
-  </mat-list-item>
-</mat-list> -->
-
 <mat-list>
   @for (playlist of playlists; track playlist.id) {
-  <mat-list-item lines="2">
+  <mat-list-item lines="2" [activated]="true">
     <span matListItemTitle>{{ $index + 1 }}. {{ playlist.name }}</span>
   </mat-list-item>
   }

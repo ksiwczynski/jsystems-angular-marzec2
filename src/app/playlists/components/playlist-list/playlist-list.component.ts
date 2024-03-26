@@ -1,7 +1,26 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
-NgFor;
+const mockPlaylists = [
+  {
+    id: '123',
+    name: 'Playlist 123',
+    public: true,
+    description: 'Best description...',
+  },
+  {
+    id: '234',
+    name: 'Playlist 234',
+    public: false,
+    description: 'Long description...',
+  },
+  {
+    id: '345',
+    name: 'Playlist 345',
+    public: true,
+    description: 'awesome description...',
+  },
+];
 
 @Component({
   selector: 'app-playlist-list',
@@ -9,28 +28,12 @@ NgFor;
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  playlists = [
-    {
-      id: '123',
-      name: 'Playlist 123',
-      public: true,
-      description: 'Best description...',
-    },
-    {
-      id: '234',
-      name: 'Playlist 234',
-      public: false,
-      description: 'Long description...',
-    },
-    {
-      id: '345',
-      name: 'Playlist 345',
-      public: true,
-      description: 'awesome description...',
-    },
-  ];
+  playlists = mockPlaylists;
 
-  indexById(index: number, item: any) {
-    return item.id;
+  selectedId = '234';
+
+  select(id:string){
+    // TODO:
   }
+ 
 }
