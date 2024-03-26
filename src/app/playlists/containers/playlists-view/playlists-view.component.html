@@ -3,11 +3,16 @@
 <div class="container">
   <div class="grid grid-cols-2">
     <div>
-      
-      <app-playlist-list [items]="playlists" />
+      <app-playlist-list
+        [items]="playlists"
+        (selectedIdChange)="selectPlaylistById($event)"
+      />
 
-      <input type="text" [value]="playlists[0].name" />
-
+      <input
+        type="text"
+        [value]="playlists[0].name"
+        (keyup)="playlists[0].name = $any($event.target).value"
+      />
     </div>
 
     <div>
