@@ -12,10 +12,9 @@ export class PlaylistListComponent {
 
   @Output() selectedIdChange = new EventEmitter<string>();
 
-  selectedId = '';
+  @Input() selectedId = '';
 
   select(id: string) {
-    this.selectedId = id;
     this.selectedIdChange.emit(id);
   }
 }

@@ -5,8 +5,10 @@
     <div>
       <app-playlist-list
         [items]="playlists"
+        [selectedId]="selected.id"
         (selectedIdChange)="selectPlaylistById($event)"
       />
+      <app-playlist-list [items]="playlists" [(selectedId)]="selectedId" />
 
       <input
         type="text"
@@ -18,7 +20,7 @@
     <div>
       @switch (mode) {
         @case ("editor") {
-          <app-playlist-editor />
+          <app-playlist-editor [playlist]="selected" />
         }
         @default {
           <app-playlist-details [playlist]="selected" />
