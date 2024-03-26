@@ -7,8 +7,28 @@
     </div>
 
     <div>
-      <app-playlist-details [hidden]="mode !== 'details'" />
-      <app-playlist-editor [hidden]="mode !== 'editor'" />
+      <!-- <ng-template [ngIf]="mode === 'details'" [ngIfElse]="editorTpl">
+        <app-playlist-details /> {{mode}}
+      </ng-template> -->
+
+      <!-- <ng-template [ngTemplateOutlet]="detailsTpl" /> -->
+
+      <ng-template
+        [ngIf]="mode === 'details'"
+        [ngIfThen]="detailsTpl"
+        [ngIfElse]="editorTpl"
+      >
+      </ng-template>
+
+      <ng-template #detailsTpl>
+        <app-playlist-details />
+      </ng-template>
+
+      <ng-template #editorTpl>
+        <app-playlist-editor />
+      </ng-template>
+
+      <!-- app-routing.module.ts:14 ERROR Error: NG0201: No provider for _TemplateRef found. Find more at https://angular.io/errors/NG0201 -->
 
       <button (click)="showDetails()">Details</button>
       <button (click)="showEditor()">Edit</button>
