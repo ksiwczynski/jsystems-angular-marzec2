@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 
 const EMPTY_PLAYLIST: Playlist = {
@@ -16,4 +22,12 @@ const EMPTY_PLAYLIST: Playlist = {
 })
 export class PlaylistEditorComponent {
   @Input() playlist: Playlist = EMPTY_PLAYLIST;
+
+  @Output() cancel = new EventEmitter<void>();
+
+  @Output() save = new EventEmitter<Playlist>();
+
+  submit() {
+    this.save.emit(this.playlist);
+  }
 }

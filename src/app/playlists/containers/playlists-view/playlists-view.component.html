@@ -13,13 +13,16 @@
     <div>
       @switch (mode) {
         @case ("editor") {
-          <app-playlist-editor [playlist]="selected" />
+          <app-playlist-editor
+            [playlist]="selected"
+            (cancel)="showDetails()"
+            (save)="savePlaylist($event)"
+          />
         }
         @default {
-          <app-playlist-details [playlist]="selected" />
+          <app-playlist-details [playlist]="selected" (edit)="showEditor()" />
         }
       }
-
     </div>
   </div>
 </div>

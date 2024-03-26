@@ -32,7 +32,9 @@
   </div>
 
   <div class="flex content-between">
-    <button mat-raised-button color="warn">Cancel</button>
-    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button color="warn" (click)="cancel.emit()">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="submit()">Save</button>
   </div>
 </div>

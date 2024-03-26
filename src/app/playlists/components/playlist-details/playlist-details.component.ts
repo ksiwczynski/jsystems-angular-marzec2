@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 
 @Component({
@@ -7,9 +7,11 @@ import { Playlist } from '../playlist-list/Playlist';
   styleUrl: './playlist-details.component.scss',
 })
 export class PlaylistDetailsComponent {
-  // @Input() playlist: Playlist = EMPTY_PLAYLIST
-  // @Input() playlist?: Playlist;
-  // @Input() playlist!: Playlist;
-
   @Input({ required: true }) playlist!: Playlist;
+
+  @Output() edit = new EventEmitter<void>();
+
+  // clickEdit() {
+  //   this.edit.emit();
+  // }
 }
