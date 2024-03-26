@@ -1,31 +1,8 @@
 <mat-list>
-  <!-- <ng-template
-    ngFor
-    [ngForOf]="playlists"
-    let-playlist="$implicit"
-    let-i="index"
+  <mat-list-item
+    lines="2"
+    *ngFor="let playlist of playlists; index as i; trackBy: indexById"
   >
-    <mat-list-item lines="2">
-      <span matListItemTitle>{{ i + 1 }}. {{ playlist.name }}</span>
-    </mat-list-item>
-  </ng-template> -->
-
-  <mat-list-item lines="2" *ngFor="let playlist of playlists; index as i">
     <span matListItemTitle>{{ i + 1 }}. {{ playlist.name }}</span>
   </mat-list-item>
 </mat-list>
-
-<!-- [ngFor][ngForOf]
-<div ngFor="" ngForOf=""></div> -->
-
-<!-- for(let item of playlists){} -->
-
-<!-- <div *appProduct="
-    let product, let c = cart
-    where {price:100} 
-    orderBy 'price' ">
-    
-    {{product.name}}
-    
-    <button (click)="c.addToCard()">+</button>
-</div> -->

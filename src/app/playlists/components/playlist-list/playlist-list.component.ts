@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
-NgFor
+NgFor;
 
 @Component({
   selector: 'app-playlist-list',
@@ -29,4 +29,8 @@ export class PlaylistListComponent {
       description: 'awesome description...',
     },
   ];
+
+  indexById(index: number, item: any) {
+    return item.id;
+  }
 }
