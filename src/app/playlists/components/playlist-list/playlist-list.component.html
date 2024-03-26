@@ -1,1 +1,17 @@
-<p>playlist-list works!</p>
+<mat-list>
+  <ng-template
+    ngFor
+    [ngForOf]="playlists"
+    let-playlist="$implicit"
+    let-i="index"
+  >
+    <mat-list-item lines="2">
+      <span matListItemTitle>{{ i + 1 }}. {{ playlist.name }}</span>
+    </mat-list-item>
+  </ng-template>
+</mat-list>
+
+<!-- [ngFor][ngForOf]
+<div ngFor="" ngForOf=""></div> -->
+
+<!-- for(let item of playlists){} -->
