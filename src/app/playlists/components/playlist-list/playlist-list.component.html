@@ -1,6 +1,11 @@
 <mat-list>
   @for (playlist of playlists; track playlist.id) {
-    <mat-list-item lines="2" [activated]="true">
+    <mat-list-item
+      lines="2"
+      [activated]="playlist.id === selectedId"
+      (click)="select(playlist.id)"
+    
+    >
       <span matListItemTitle>{{ $index + 1 }}. {{ playlist.name }}</span>
     </mat-list-item>
   }

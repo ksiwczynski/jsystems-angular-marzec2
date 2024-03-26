@@ -32,8 +32,7 @@ export class PlaylistListComponent {
 
   selectedId = '234';
 
-  select(id:string){
-    // TODO:
+  select(id: string) {
+    this.selectedId = id;
   }
- 
 }
