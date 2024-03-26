@@ -39,20 +39,20 @@ export class PlaylistEditorComponent {
   nameInputRef?: ElementRef<HTMLInputElement>;
 
   constructor() {
-    console.log('constructor');
+    // console.log('constructor');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', changes);
+    // console.log('ngOnChanges', changes);
   }
   ngOnInit(): void {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
   }
   ngDoCheck(): void {
-    console.log('ngDoCheck');
+    // console.log('ngDoCheck');
   }
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
+    // console.log('ngAfterViewInit');
     this.nameInputRef?.nativeElement.focus();
   }
   ngAfterViewChecked(): void {}
@@ -60,6 +60,6 @@ export class PlaylistEditorComponent {
   ngAfterContentChecked(): void {}
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
+    // console.log('ngOnDestroy');
   }
 }
