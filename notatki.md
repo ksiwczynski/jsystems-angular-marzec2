@@ -83,4 +83,6 @@ ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-details
 ng g c playlists/components/playlist-editor
 
-
+ng g m shared -m app
+ng g c shared/components/clock --export 
+ng g d shared/directives/contenteditable --export 
