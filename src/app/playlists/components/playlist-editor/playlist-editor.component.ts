@@ -12,7 +12,7 @@ import {
 import { Playlist } from '../playlist-list/Playlist';
 import { NgForm, NgModel } from '@angular/forms';
 
-NgForm
+NgForm;
 
 const EMPTY_PLAYLIST: Playlist = {
   id: '',
@@ -36,19 +36,21 @@ export class PlaylistEditorComponent {
 
   submit() {
     // this.formRef?.controls['name'].value
-    this.formRef?.value
+    
+    const draft: Playlist = {
+      ...this.playlist,
+      ...this.formRef?.value,
+    };
 
-    this.save.emit(this.playlist);
+    this.save.emit(draft);
   }
 
   @ViewChild('playlistNameRef')
   nameInputRef?: ElementRef<HTMLInputElement>;
 
-  @ViewChild('nameModelRef') /* "exportAs" = ngModel*/
-  nameModelRef?: NgModel;
+  @ViewChild('nameModelRef') /* "exportAs" = ngModel*/ nameModelRef?: NgModel;
 
-  @ViewChild(NgForm) /* "exportAs" = ngForm */
-  formRef?: NgForm;
+  @ViewChild(NgForm) /* "exportAs" = ngForm */ formRef?: NgForm;
 
   constructor() {
     // console.log('constructor');
