@@ -10,12 +10,15 @@
       
       <!-- {{text}} [prop] (event) #localRef |pipe *template  -->
 
-      <ng-container [ngSwitch]="mode">        
-          <app-playlist-details *ngSwitchDefault />
-
-          <app-playlist-editor *ngSwitchCase="'editor'" />
-      </ng-container>
-      
+      @switch (mode) {
+        @case ('editor') {
+          <app-playlist-editor/>
+        }
+        @default {
+          <app-playlist-details/>
+        }
+      }
+ 
 
       <button (click)="showDetails()">Details</button>
       <button (click)="showEditor()">Edit</button>
