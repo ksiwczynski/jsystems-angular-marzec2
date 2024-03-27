@@ -1,7 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { mockAlbums } from './mockAlbums';
 import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
+import { Album } from './Album';
 
 @Injectable({
   providedIn: 'root', // app module (singleton)
@@ -16,4 +17,10 @@ export class MusicApiService {
 
     return mockAlbums;
   }
+
+  addAlbumToCart(id: Album['id']) {
+    console.log('Adding to cart ' + id);
+  }
+  addedToCart = new EventEmitter<Album['id']>();
+
 }
