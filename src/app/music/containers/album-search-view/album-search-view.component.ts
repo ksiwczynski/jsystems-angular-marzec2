@@ -11,12 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, filter, map, switchMap, takeUntil } from 'rxjs';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   standalone: true,
   templateUrl: './album-search-view.component.html',
   styleUrl: './album-search-view.component.scss',
-  imports: [SearchFormComponent, ResultsGridComponent],
+  imports: [SearchFormComponent, ResultsGridComponent, AsyncPipe],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -29,17 +30,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ],
 })
 export class AlbumSearchViewComponent {
-  results: Album[] = [];
-  message = '';
-  query = '';
   api = inject(MusicApiService);
 
   router = inject(Router);
   route = inject(ActivatedRoute);
-
-  // takeUntilDestroyed:
-  // destroySignal = new Subject();
-  // destroy = inject(DestroyRef).onDestroy(() => this.destroySignal.next(null));
 
   queryChanges = this.route.queryParamMap.pipe(
     map((pq) => pq.get('q')),
@@ -51,11 +45,6 @@ export class AlbumSearchViewComponent {
     switchMap((q) => this.api.searchAlbums(q)),
     takeUntilDestroyed(),
   );
-
-  ngOnInit(): void {
-    this.queryChanges.subscribe((q) => (this.query = q));
-    this.resultsChange.subscribe((res) => (this.results = res));
-  }
 
   search(query = '') {
     this.router.navigate([], {
