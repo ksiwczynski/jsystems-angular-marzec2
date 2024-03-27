@@ -108,3 +108,7 @@ https://rxjs.dev/guide/operators
 http://rxmarbles.com/
 https://www.learnrxjs.io/
 https://rxviz.com/
+
+
+# JSON forms
+https://formly.dev/docs/guide/expression-properties

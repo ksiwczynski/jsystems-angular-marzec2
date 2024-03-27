@@ -13,10 +13,13 @@
   </div>
   <div formGroupName="advanced">
     <div formArrayName="markets">
-      <div [formGroupName]="'0'">
-        <input type="text" formControlName="code" />
-      </div>
+      @for (item of markets.controls; track $index) {
+        <div [formGroupName]="$index">
+          <input type="text" formControlName="code" />
+        </div>
+      }
     </div>
+    <button (click)="addMarket()">Add Market</button>
   </div>
   <pre>{{ searchForm.value | json }}</pre>
 </form>

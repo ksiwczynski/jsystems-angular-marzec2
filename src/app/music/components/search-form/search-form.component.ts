@@ -3,7 +3,13 @@ import {
   SharedMaterialLibs,
   SharedModule,
 } from '../../../shared/shared.module';
-import { FormArray, FormControl, FormGroup, NgForm, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  NgForm,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
@@ -13,7 +19,6 @@ import { FormArray, FormControl, FormGroup, NgForm, ReactiveFormsModule } from '
   styleUrl: './search-form.component.scss',
 })
 export class SearchFormComponent {
-  
   searchForm = new FormGroup({
     query: new FormControl('batman'),
     advanced: new FormGroup({
@@ -25,6 +30,15 @@ export class SearchFormComponent {
       ]),
     }),
   });
+  markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
+
+  addMarket() {
+    this.markets.push(
+      new FormGroup({
+        code: new FormControl(''),
+      }),
+    );
+  }
 
   @Output() search = new EventEmitter<string>();
 
