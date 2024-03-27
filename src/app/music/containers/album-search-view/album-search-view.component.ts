@@ -2,13 +2,13 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicApiService } from '../../../core/services/music-api.service';
-import { Album } from '../../../core/services/Album';
+import { Album, AlbumResponse } from '../../../core/services/Album';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldDefaultOptions,
 } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, filter, map, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, filter, map, switchMap, takeUntil } from 'rxjs';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
@@ -38,13 +38,17 @@ export class AlbumSearchViewComponent {
   queryChanges = this.route.queryParamMap.pipe(
     map((pq) => pq.get('q')),
     filter(Boolean),
-    takeUntilDestroyed(),
   );
 
-  resultsChange = this.queryChanges.pipe(
-    switchMap((q) => this.api.searchAlbums(q)),
-    takeUntilDestroyed(),
-  );
+  resultsChange?: Observable<AlbumResponse[]>;
+
+  ngOnInit(): void {
+
+    // AsyncPipe - switchMap when Observable changes (comp by ref)
+    this.resultsChange = this.queryChanges.pipe(
+      switchMap((q) => this.api.searchAlbums(q)),
+    );
+  }
 
   search(query = '') {
     this.router.navigate([], {
