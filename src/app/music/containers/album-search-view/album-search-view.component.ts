@@ -28,9 +28,7 @@ export class AlbumSearchViewComponent {
   results: Album[] = [];
 
   api = inject(MusicApiService);
-  
-  // constructor(private api: MusicApiService) {}
-  
+
   search(query = '') {
     this.results = this.api.searchAlbums(query);
   }

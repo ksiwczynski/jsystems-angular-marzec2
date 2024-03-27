@@ -10,6 +10,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { API_URL } from './core/tokens';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +22,7 @@ import { API_URL } from './core/tokens';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    HttpClientModule,
     CoreModule,
     // SpecialClientXProvidersModule
   ],
@@ -24,10 +30,11 @@ import { API_URL } from './core/tokens';
     provideClientHydration(),
     provideAnimationsAsync(),
     // Provider Override
-    {
-      provide: API_URL,
-      useValue: 'http://localhost.dev/fakeapi/',
-    },
+    // { provide: HttpHandler, useClass: MyAwesomeHttpHandler }
+    // {
+    //   provide: API_URL,
+    //   useValue: 'http://localhost.dev/fakeapi/',
+    // },
   ],
   bootstrap: [AppComponent],
 })
