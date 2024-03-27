@@ -122,6 +122,39 @@
           }
         }
       }
+    },
+    "rossmann-ui": {
+      "projectType": "library",
+      "root": "projects/rossmann-ui",
+      "sourceRoot": "projects/rossmann-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/rossmann-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/rossmann-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/rossmann-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/rossmann-ui/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

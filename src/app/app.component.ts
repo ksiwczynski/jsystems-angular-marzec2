@@ -4,12 +4,14 @@ import { environment } from '../environments/environment';
 import { isPlatformBrowser } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 
+import {RossmannUiComponent, RossmannUiService} from 'rossmann-ui';
+
 @Component({
   selector: 'app-root, .placki[sos=malinowy]',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, RossmannUiComponent],
 })
 export class AppComponent {
   title = 'JSystems Rossmann Angular';
