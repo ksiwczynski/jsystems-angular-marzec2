@@ -17,6 +17,7 @@ import {
   from,
   map,
   retry,
+  switchMap,
   throwError,
 } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -45,6 +46,11 @@ export class MusicApiService {
       .pipe(
         map((res) => res.albums.items),
 
+        // switchMap(e => {
+        //   if(e == 'placki') return EMPTY
+        //   return of(e) 
+        // }),
+
         catchError((error, originalObs) => {
           this.errorHandler.handleError(error);
 
@@ -52,14 +58,6 @@ export class MusicApiService {
             return throwError(() => new Error(error.error.error.message));
           }
           return throwError(() => new Error('Unexpected Error'));
-
-          // return originalObs // retry
-          // return this.http.get('inny server')
-          return [mockAlbums, mockAlbums]; // -OO|->
-          return from([]); // --|->
-          return [[]]; // --([])|->
-          return []; // --|->
-          return EMPTY; // --|->
         }),
       );
   }
