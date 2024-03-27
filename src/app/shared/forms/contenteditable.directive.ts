@@ -13,11 +13,11 @@ import {
 @Directive({
   selector: '[contenteditable=true][ngModel]',
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: ContenteditableDirective,
-      multi: true,
-    },
+      {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: ContenteditableDirective,
+        multi: true,
+      },
   ],
 })
 export class ContenteditableDirective implements ControlValueAccessor {
