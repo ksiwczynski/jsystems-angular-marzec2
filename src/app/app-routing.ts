@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
-const routes: Routes = [
+export default [
   {
     path: '',
     redirectTo: '/music/search',
@@ -15,17 +15,10 @@ const routes: Routes = [
   },
   {
     path: 'music',
-    loadChildren: () =>
-      import('./music/music.module').then((m) => m.MusicModule),
+    loadChildren: () => import('./music/music-routing.module'),
   },
   {
     path: '**',
     component: PageNotFoundComponent,
   },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+] satisfies Routes;

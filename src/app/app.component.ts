@@ -2,11 +2,14 @@ import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
 import { isPlatformBrowser } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 @Component({
   selector: 'app-root, .placki[sos=malinowy]',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [SharedModule],
 })
 export class AppComponent {
   title = 'JSystems Rossmann Angular';

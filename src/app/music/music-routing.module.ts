@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { MusicComponent } from './music.component';
 import { AlbumSearchViewComponent } from './containers/album-search-view/album-search-view.component';
 
-const routes: Routes = [
+export default [
   {
     path: '',
     component: MusicComponent,
@@ -19,10 +18,4 @@ const routes: Routes = [
       },
     ],
   },
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class MusicRoutingModule {}
+] satisfies Routes;
