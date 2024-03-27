@@ -37,14 +37,14 @@ export class SearchFormComponent {
 
     field!.valueChanges
       .pipe(
+        // wait 500ms before sending
+        debounceTime(500),
+        
         // minimum 3 length
-        filter((q) => q.length > 3),
+        filter((q) => q.length >= 3),
 
         // no duplicates
         distinctUntilChanged(),
-
-        // wait 500ms before sending
-        debounceTime(500)
       )
       .subscribe(console.log);
   }
