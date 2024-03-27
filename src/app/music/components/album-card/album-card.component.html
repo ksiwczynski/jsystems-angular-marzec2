@@ -3,7 +3,7 @@
     class="w-100"
     mat-card-image
     [src]="
-      album.images[0]?.url ?? 'http://unsplash.it/300/300?random&gravity=center'
+      album.images[0].url || 'http://unsplash.it/300/300?random&gravity=center'
     "
     fill
   />
