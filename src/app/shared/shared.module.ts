@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { NavigationComponent } from './layouts/navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
 
 export const SharedMaterialLibs = [
   MatListModule,
@@ -35,6 +36,7 @@ export const SharedMaterialLibs = [
   ],
   imports: [
     SharedMaterialLibs,
+    RouterModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -43,6 +45,7 @@ export const SharedMaterialLibs = [
   ],
   exports: [
     SharedMaterialLibs,
+    RouterModule,
     ClockComponent,
     ContenteditableDirective,
     PageNotFoundComponent,

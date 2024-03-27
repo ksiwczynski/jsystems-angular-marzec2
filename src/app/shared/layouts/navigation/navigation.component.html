@@ -9,8 +9,20 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/playlists">Playlists</a>
-      <a mat-list-item href="/music/search">Search</a>
+      <a
+        mat-list-item
+        routerLinkActive="placki mdc-list-item--activated"
+        [activated]="rla.isActive"
+        #rla="routerLinkActive"
+        routerLink="/playlists"
+        >Playlists</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="placki mdc-list-item--activated"
+        routerLink="/music/search"
+        >Search</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
