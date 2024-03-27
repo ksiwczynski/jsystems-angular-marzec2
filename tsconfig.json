@@ -17,8 +17,8 @@
     "paths": {
       "rossmann-ui": [
         // ng build --project=rossmann-ui && npm publish 
-        "./dist/rossmann-ui" // published
-        // "./projects/rossmann-ui/src/public-api" // development + ng
+        // "./dist/rossmann-ui" // published
+        "./projects/rossmann-ui/src/public-api" // development + ng
       ]
     },
     "importHelpers": true,
