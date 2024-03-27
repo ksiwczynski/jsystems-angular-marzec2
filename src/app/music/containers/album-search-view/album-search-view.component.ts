@@ -44,12 +44,16 @@ export class AlbumSearchViewComponent {
 
     queryChanges.subscribe((q) => (this.query = q));
 
-    queryChanges.subscribe((q) => {
-      this.api.searchAlbums(q).subscribe({
+    queryChanges
+      .pipe(
+        map((q) => this.api.searchAlbums(q)),
+
+        (obs) => obs, // Observable<Observable<AlbumResponse[]>>
+      )
+      .subscribe({
         next: (albums) => (this.results = albums),
         error: (error) => (this.message = error.message),
       });
-    });
   }
   search(query = '') {
     // this.router.navigate(['/','music','search'])
