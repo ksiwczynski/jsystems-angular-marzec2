@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-fo
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/playlists',
+    redirectTo: '/music/search',
     pathMatch: 'full',
   },
   {
