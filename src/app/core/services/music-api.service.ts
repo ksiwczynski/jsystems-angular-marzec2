@@ -1,4 +1,4 @@
-import { EventEmitter, Inject, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable, inject } from '@angular/core';
 import { mockAlbums } from './mockAlbums';
 import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
@@ -10,17 +10,15 @@ import { Album } from './Album';
   // useValue: ...
 })
 export class MusicApiService {
-  constructor(@Inject(API_URL) private api_url: string) {}
-
+  api_url = inject(API_URL);
+  
+  // constructor(@Inject(API_URL) private api_url: string) {}
+  
   searchAlbums(query = 'batman') {
+    // Error: NG0203: inject() must be called from an injection context such as a constructor, a factory function, a field initializer, or a function used with `runInInjectionContext`. Find more at https://angular.io/errors/NG0203
+    // const api_url = inject(API_URL);
     console.log(this.api_url, query);
 
     return mockAlbums;
   }
-
-  addAlbumToCart(id: Album['id']) {
-    console.log('Adding to cart ' + id);
-  }
-  addedToCart = new EventEmitter<Album['id']>();
-
 }

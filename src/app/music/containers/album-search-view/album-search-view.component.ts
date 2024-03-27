@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicApiService } from '../../../core/services/music-api.service';
@@ -27,8 +27,10 @@ import {
 export class AlbumSearchViewComponent {
   results: Album[] = [];
 
-  constructor(private api: MusicApiService) {}
-
+  api = inject(MusicApiService);
+  
+  // constructor(private api: MusicApiService) {}
+  
   search(query = '') {
     this.results = this.api.searchAlbums(query);
   }
