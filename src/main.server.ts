@@ -20,17 +20,18 @@ import { environment } from './environments/environment';
 
 import routes from './app/app-routing';
 import { AppComponent } from './app/app.component';
+import { LOCALE_ID } from '@angular/core';
 
-export default function boostrap() {
+export default function boostrap(server = true) {
   return bootstrapApplication(AppComponent, {
     providers: [
       {
         provide: API_URL,
         useValue: environment.api_url,
       },
+      { provide: LOCALE_ID, useValue: 'pl-PL' },
       provideRouter(routes),
-      // provideClientHydration(),
-      // provideAnimationsAsync(),
+      server ? [] : [provideClientHydration(), provideAnimationsAsync()],
       provideOAuthClient(),
       provideHttpClient(
         withFetch(),

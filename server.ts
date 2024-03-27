@@ -2,17 +2,22 @@ import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
-import { dirname, join, resolve } from 'node:path';
-import AppServerModule from './src/main.server';
-import { AppComponent } from './src/app/app.component';
-import mainServer from './src/main.server';
+import { dirname, join, resolve, basename } from 'node:path';
 import boostrap from './src/main.server';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-  const browserDistFolder = resolve(serverDistFolder, '../browser');
+
+  debugger
+
+  // C:\Projects\jsystems-angular-marzec\dist\jsystems-rossmann-angular\server\pl-PL 
+  console.log(serverDistFolder);
+
+  const locale = serverDistFolder.match(/server\\(.*?)$/)?.[1] ?? '/';
+
+  const browserDistFolder = resolve(serverDistFolder, '../../browser/');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
   const commonEngine = new CommonEngine();
@@ -23,9 +28,8 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get(
-    '*.*',
-    express.static(browserDistFolder, {
+  server.get('*.*',
+    express.static(resolve(browserDistFolder), {
       maxAge: '1y',
     }),
   );

@@ -8,6 +8,7 @@
           <context context-type="sourcefile">src/app/playlists/components/playlist-details/playlist-details.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
+        <note priority="1" from="description">playlist name</note>
       </trans-unit>
       <trans-unit id="8928816882866356838" datatype="html">
         <source>Public</source>

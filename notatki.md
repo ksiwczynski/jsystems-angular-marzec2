@@ -118,11 +118,11 @@ ng add @angular/localize
 
 ```
 "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "pl-PL": "src/locale/messages.pl.xlf"
-        }
-      },
+  "sourceLocale": "en-US",
+  "locales": {
+    "pl-PL": "src/locale/messages.pl.xlf"
+  }
+},
 ```
 
 ng extract-i18n --help
