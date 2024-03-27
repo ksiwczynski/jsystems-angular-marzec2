@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   EMPTY,
+  Subject,
   Subscription,
   catchError,
   exhaustMap,
@@ -17,6 +18,7 @@ import {
   map,
   mergeMap,
   switchMap,
+  takeUntil,
 } from 'rxjs';
 
 @Component({
@@ -44,26 +46,26 @@ export class AlbumSearchViewComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
+  destroySignal = new Subject();
+
   queryChanges = this.route.queryParamMap.pipe(
     map((pq) => pq.get('q')),
     filter(Boolean),
+    takeUntil(this.destroySignal),
   );
 
   resultsChange = this.queryChanges.pipe(
     switchMap((q) => this.api.searchAlbums(q)),
+    takeUntil(this.destroySignal),
   );
 
-  sub1?: Subscription;
-  sub2?: Subscription;
-
   ngOnInit(): void {
-    this.sub1 = this.queryChanges.subscribe((q) => (this.query = q));
-    this.sub2 = this.resultsChange.subscribe((res) => (this.results = res));
+    this.queryChanges.subscribe((q) => (this.query = q));
+    this.resultsChange.subscribe((res) => (this.results = res));
   }
 
   ngOnDestroy(): void {
-    this.sub1?.unsubscribe();
-    this.sub2?.unsubscribe();
+    this.destroySignal.next(null);
   }
 
   search(query = '') {
