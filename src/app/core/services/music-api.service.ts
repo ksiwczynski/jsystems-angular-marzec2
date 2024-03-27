@@ -4,7 +4,9 @@ import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // app module (singleton)
+  // providedIn: 'any', // lazy loaded
+  // useValue: ...
 })
 export class MusicApiService {
   constructor(@Inject(API_URL) private api_url: string) {}

@@ -11,6 +11,11 @@ import { API_URL } from './tokens';
       provide: API_URL,
       useValue: environment.api_url,
     },
+    // {
+    //   provide: MusicApiService,
+    //   useClass: MusicApiService
+    // }, 
+    // MusicApiService
   ],
 })
 export class CoreModule {}
