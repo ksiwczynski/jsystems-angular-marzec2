@@ -21,6 +21,7 @@ import { environment } from './environments/environment';
 import routes from './app/app-routing';
 import { AppComponent } from './app/app.component';
 import { LOCALE_ID } from '@angular/core';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 export default function boostrap(server = true) {
   return bootstrapApplication(AppComponent, {
@@ -31,7 +32,9 @@ export default function boostrap(server = true) {
       },
       { provide: LOCALE_ID, useValue: 'pl-PL' },
       provideRouter(routes),
-      server ? [] : [provideClientHydration(), provideAnimationsAsync()],
+      server
+        ? [provideNoopAnimations()]
+        : [provideClientHydration(), provideAnimationsAsync()],
       provideOAuthClient(),
       provideHttpClient(
         withFetch(),
