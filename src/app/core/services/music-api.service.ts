@@ -1,10 +1,24 @@
-import { EventEmitter, Inject, Injectable, inject } from '@angular/core';
+import {
+  ErrorHandler,
+  EventEmitter,
+  Inject,
+  Injectable,
+  inject,
+} from '@angular/core';
 import { mockAlbums } from './mockAlbums';
 import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
 import { Album, AlbumSearchResponse } from './Album';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  EMPTY,
+  Observable,
+  catchError,
+  from,
+  map,
+  retry,
+  throwError,
+} from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
@@ -14,6 +28,7 @@ export class MusicApiService {
   api_url = inject(API_URL);
   http = inject(HttpClient);
   oauth = inject(OAuthService);
+  errorHandler = inject(ErrorHandler); // TODO: Telemetry Provider override!
 
   searchAlbums(query = 'batman') {
     // RECIPE
@@ -29,8 +44,23 @@ export class MusicApiService {
       })
       .pipe(
         map((res) => res.albums.items),
-        // map((res) => res.albums), // PagingObject
-        // map((res) => res.items), // Album[]
+
+        catchError((error, originalObs) => {
+          this.errorHandler.handleError(error);
+
+          if (error instanceof HttpErrorResponse) {
+            return throwError(() => new Error(error.error.error.message));
+          }
+          return throwError(() => new Error('Unexpected Error'));
+
+          // return originalObs // retry
+          // return this.http.get('inny server')
+          return [mockAlbums, mockAlbums]; // -OO|->
+          return from([]); // --|->
+          return [[]]; // --([])|->
+          return []; // --|->
+          return EMPTY; // --|->
+        }),
       );
   }
 }

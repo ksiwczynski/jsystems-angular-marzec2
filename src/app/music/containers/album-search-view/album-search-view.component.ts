@@ -32,7 +32,7 @@ export class AlbumSearchViewComponent {
   search(query = '') {
     this.api.searchAlbums(query).subscribe({
       next: (albums) => (this.results = albums), // --O-->
-      error: (error) => (this.message = error.error.error.message), // --X-->
+      error: (error) => (this.message = error.message), // --X-->
       complete: () => console.log('complete'), // --|-->
     });
   }
