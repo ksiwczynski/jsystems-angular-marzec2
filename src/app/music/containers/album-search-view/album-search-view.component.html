@@ -1,11 +1,11 @@
 <div class="container">
   <div class="flex flex-col">
     <div>
-      <app-search-form />
+      <app-search-form (search)="search($event)" />
     </div>
 
     <div>
-      <app-results-grid />
+      <app-results-grid [results]="results" />
     </div>
   </div>
 </div>

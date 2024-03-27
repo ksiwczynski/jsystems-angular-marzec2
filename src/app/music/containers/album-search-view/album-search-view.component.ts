@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicApiService } from '../../../core/services/music-api.service';
+import { Album } from '../../../core/services/Album';
 
 @Component({
   standalone: true,
@@ -10,10 +11,11 @@ import { MusicApiService } from '../../../core/services/music-api.service';
   imports: [SearchFormComponent, ResultsGridComponent],
 })
 export class AlbumSearchViewComponent {
-  
+  results: Album[] = [];
+
   constructor(private api: MusicApiService) {}
 
-  search(query = ''){
-    // >??
+  search(query = '') {
+    this.results = this.api.searchAlbums(query);
   }
 }

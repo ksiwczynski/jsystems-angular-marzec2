@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-  @for (item of [1, 2, 3, 4, 5]; track $index) {
-    <app-album-card />
+  @for (item of results; track $index) {
+    <app-album-card [album]="item" />
   }
 </div>

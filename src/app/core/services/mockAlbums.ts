@@ -8,7 +8,7 @@ export const mockAlbums: Album[] = [
       {
         height: 200,
         width: 200,
-        url: 'http://placekitten.com/300/300',
+        url: 'http://unsplash.it/300/300?random&gravity=center',
       },
     ],
   },
@@ -19,7 +19,7 @@ export const mockAlbums: Album[] = [
       {
         height: 200,
         width: 200,
-        url: 'http://placekitten.com/200/200',
+        url: 'http://unsplash.it/300/300?random&gravity=center',
       },
     ],
   },
@@ -30,7 +30,7 @@ export const mockAlbums: Album[] = [
       {
         height: 200,
         width: 200,
-        url: 'http://placekitten.com/400/400',
+        url: 'http://unsplash.it/300/300?random&gravity=center',
       },
     ],
   },
@@ -41,7 +41,7 @@ export const mockAlbums: Album[] = [
       {
         height: 200,
         width: 200,
-        url: 'http://placekitten.com/500/500',
+        url: 'http://unsplash.it/300/300?random&gravity=center',
       },
     ],
   },

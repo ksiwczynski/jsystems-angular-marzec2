@@ -1,8 +1,8 @@
-<form>
+<form (ngSubmit)="submit()">
   <div class="relative">
     <mat-form-field class="mb-3 w-full" #fieldRef appearance="fill">
       <mat-label>Search</mat-label>
-      <input type="text" matInput ngModel name="query" />
+      <input type="text" matInput [(ngModel)]="query" name="query" />
     </mat-form-field>
 
     <div class="absolute right-5 top-6">

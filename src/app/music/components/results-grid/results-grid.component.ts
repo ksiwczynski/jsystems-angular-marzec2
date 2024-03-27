@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AlbumCardComponent } from '../album-card/album-card.component';
-import { SharedMaterialLibs } from '../../../shared/shared.module';
+import { Album } from '../../../core/services/Album';
 
 @Component({
   selector: 'app-results-grid',
@@ -9,4 +9,6 @@ import { SharedMaterialLibs } from '../../../shared/shared.module';
   styleUrl: './results-grid.component.scss',
   imports: [AlbumCardComponent],
 })
-export class ResultsGridComponent {}
+export class ResultsGridComponent {
+  @Input({ required: true }) results: Album[] = [];
+}
