@@ -9,7 +9,7 @@
         "sourceLocale": "en-US",
         "locales": {
           "pl-PL": {
-            "translation":"src/locale/messages.pl-PL.xlf",
+            "translation": "src/locale/messages.pl-PL.xlf",
             "baseHref": ""
           }
         }
