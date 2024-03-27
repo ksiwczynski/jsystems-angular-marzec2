@@ -32,7 +32,18 @@ export class SearchFormComponent {
   });
 
   ngOnInit(): void {
-    this.searchForm.valueChanges.subscribe(console.log);
+    
+    this.searchForm.get('query')?.valueChanges.pipe(
+      // minimum 3 length
+      // ???
+      
+      // no duplicates
+      // ???
+      
+      // wait 500ms before sending
+      // ???
+    )
+    .subscribe(console.log);
   }
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
 
