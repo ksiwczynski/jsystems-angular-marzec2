@@ -32,6 +32,8 @@ export class SearchFormComponent {
     }),
   });
 
+  @Output() search = new EventEmitter<string>();
+
   ngOnInit(): void {
     const field = this.searchForm.get('query');
 
@@ -39,14 +41,21 @@ export class SearchFormComponent {
       .pipe(
         // wait 500ms before sending
         debounceTime(500),
-        
+
         // minimum 3 length
         filter((q) => q.length >= 3),
 
         // no duplicates
         distinctUntilChanged(),
       )
-      .subscribe(console.log);
+      // Multicast 1-* chaining
+      .subscribe(this.search);
+
+    // .subscribe({
+    //   next: (q) => this.search.next(q),
+    //   error: (q) => this.search.error(q),
+    //   complete: () => this.search.complete(),
+    // });
   }
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
 
@@ -57,8 +66,6 @@ export class SearchFormComponent {
       }),
     );
   }
-
-  @Output() search = new EventEmitter<string>();
 
   submit() {
     this.search.emit(this.searchForm.value.query || '');
