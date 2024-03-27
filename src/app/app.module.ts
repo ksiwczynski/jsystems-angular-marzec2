@@ -14,23 +14,40 @@ import {
   HttpClient,
   HttpClientModule,
   HttpHandler,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
 } from '@angular/common/http';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
+import {
+  URLInterceptor,
+  authInterceptor,
+  errorInterceptor,
+} from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    OAuthModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule,
+    // HttpClientModule,
     CoreModule,
     // SpecialClientXProvidersModule
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
+    provideOAuthClient(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([
+        // Transform Req/Res
+        URLInterceptor,
+        authInterceptor,
+        errorInterceptor,
+      ]),
+    ),
     // Provider Override
     // { provide: HttpHandler, useClass: MyAwesomeHttpHandler }
     // {
