@@ -30,6 +30,10 @@ export class SearchFormComponent {
       ]),
     }),
   });
+
+  ngOnInit(): void {
+    this.searchForm.valueChanges.subscribe(console.log);
+  }
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
 
   addMarket() {

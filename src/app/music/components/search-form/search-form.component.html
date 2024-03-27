@@ -11,7 +11,7 @@
       </button>
     </div>
   </div>
-  <div formGroupName="advanced">
+  <div formGroupName="advanced" *ngIf="true">
     <div formArrayName="markets">
       @for (item of markets.controls; track $index) {
         <div [formGroupName]="$index">
@@ -19,7 +19,7 @@
         </div>
       }
     </div>
-    <button (click)="addMarket()">Add Market</button>
+    <button type="button" (click)="addMarket()">Add Market</button>
+    <pre>{{ searchForm.value | json }}</pre>
   </div>
-  <pre>{{ searchForm.value | json }}</pre>
 </form>
