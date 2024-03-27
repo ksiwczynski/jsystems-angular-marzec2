@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { ErrorHandler, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { API_URL } from '../tokens';
-import { retry, throwError, timer, catchError } from 'rxjs';
+import { retry, throwError, timer, catchError, EMPTY } from 'rxjs';
 
 export const URLInterceptor: HttpInterceptorFn = (req, next) => {
   const api_url = inject(API_URL);
@@ -29,8 +29,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
 };
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const errorHandler = inject(ErrorHandler); // TODO: Telemetry Provider override!
+
+  const _snackBar = inject(MatSnackBar);
+
   return next(req).pipe(
     retry({
       count: 3,
@@ -53,6 +58,15 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         return throwError(() => new Error(error.error.error.message));
       }
       return throwError(() => new Error('Unexpected Error'));
+    }),
+    catchError((error) => {
+      const bar = _snackBar.open(error.message, 'Error', {
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        panelClass: 'text-500-red',
+        duration: 2000,
+      });
+      return EMPTY;
     }),
   );
 };

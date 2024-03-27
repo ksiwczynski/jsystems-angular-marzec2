@@ -46,23 +46,16 @@ export class AlbumSearchViewComponent {
   ngOnInit(): void {
     const queryChanges = this.route.queryParamMap.pipe(
       map((pq) => pq.get('q')),
-      // filter((q): q is string => q == null),
       filter(Boolean),
     );
 
     queryChanges.subscribe((q) => (this.query = q));
 
     queryChanges
-      .pipe(
-        switchMap((q) => this.api.searchAlbums(q)),
-        catchError((error) => ((this.message = error.message), EMPTY)),
-      )
-      .subscribe({
-        next: (albums) => (this.results = albums),
-      });
+      .pipe(switchMap((q) => this.api.searchAlbums(q)))
+      .subscribe((albums) => (this.results = albums));
   }
   search(query = '') {
-    // this.router.navigate(['/','music','search'])
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {

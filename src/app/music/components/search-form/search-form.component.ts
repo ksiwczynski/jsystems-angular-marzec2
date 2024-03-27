@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   SharedMaterialLibs,
   SharedModule,
@@ -20,6 +26,11 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
   styleUrl: './search-form.component.scss',
 })
 export class SearchFormComponent {
+
+  @Input() set query(query: string | null) {
+    this.searchForm.get('query')?.setValue(query || '');
+  }
+
   searchForm = new FormGroup({
     query: new FormControl('batman', { nonNullable: true }),
     advanced: new FormGroup({
