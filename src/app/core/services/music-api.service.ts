@@ -1,25 +1,8 @@
-import {
-  ErrorHandler,
-  EventEmitter,
-  Inject,
-  Injectable,
-  inject,
-} from '@angular/core';
-import { mockAlbums } from './mockAlbums';
-import { environment } from '../../../environments/environment';
+import { ErrorHandler, Injectable, inject } from '@angular/core';
 import { API_URL } from '../tokens';
-import { Album, AlbumSearchResponse } from './Album';
+import { AlbumSearchResponse } from './Album';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {
-  EMPTY,
-  Observable,
-  catchError,
-  from,
-  map,
-  retry,
-  switchMap,
-  throwError,
-} from 'rxjs';
+import { catchError, map, retry, throwError, timer } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
@@ -45,7 +28,20 @@ export class MusicApiService {
       })
       .pipe(
         map((res) => res.albums.items),
+        retry({
+          count: 3,
+          delay(error, retryCount) {
+            const RETRY_STATUS_CODES = [408, 413, 429, 500, 502, 503, 504, 0];
 
+            if (
+              !(error instanceof HttpErrorResponse) ||
+              RETRY_STATUS_CODES.indexOf(error.status) == -1
+            )
+              return throwError(() => error);
+
+            return timer(1000 * retryCount ** 2);
+          },
+        }),
         catchError((error, originalObs) => {
           this.errorHandler.handleError(error);
 
