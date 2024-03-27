@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicApiService } from '../../../core/services/music-api.service';
@@ -8,18 +8,9 @@ import {
   MatFormFieldDefaultOptions,
 } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  EMPTY,
-  Subject,
-  Subscription,
-  catchError,
-  exhaustMap,
-  filter,
-  map,
-  mergeMap,
-  switchMap,
-  takeUntil,
-} from 'rxjs';
+import { Subject, filter, map, switchMap, takeUntil } from 'rxjs';
+
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -46,26 +37,24 @@ export class AlbumSearchViewComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  destroySignal = new Subject();
+  // takeUntilDestroyed:
+  // destroySignal = new Subject();
+  // destroy = inject(DestroyRef).onDestroy(() => this.destroySignal.next(null));
 
   queryChanges = this.route.queryParamMap.pipe(
     map((pq) => pq.get('q')),
     filter(Boolean),
-    takeUntil(this.destroySignal),
+    takeUntilDestroyed(),
   );
 
   resultsChange = this.queryChanges.pipe(
     switchMap((q) => this.api.searchAlbums(q)),
-    takeUntil(this.destroySignal),
+    takeUntilDestroyed(),
   );
 
   ngOnInit(): void {
     this.queryChanges.subscribe((q) => (this.query = q));
     this.resultsChange.subscribe((res) => (this.results = res));
-  }
-
-  ngOnDestroy(): void {
-    this.destroySignal.next(null);
   }
 
   search(query = '') {
