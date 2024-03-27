@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
 import { Album, AlbumSearchResponse } from './Album';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
@@ -16,14 +16,21 @@ export class MusicApiService {
   oauth = inject(OAuthService);
 
   searchAlbums(query = 'batman') {
-    return this.http.get<AlbumSearchResponse>(`${this.api_url}search`, {
-      headers: {
-        Authorization: 'Bearer ' + this.oauth.getAccessToken(),
-      },
-      params: {
-        type: 'album',
-        q: query,
-      },
-    });
+    // RECIPE
+    return this.http
+      .get<AlbumSearchResponse>(`${this.api_url}search`, {
+        headers: {
+          Authorization: 'Bearer ' + this.oauth.getAccessToken(),
+        },
+        params: {
+          type: 'album',
+          q: query,
+        },
+      })
+      .pipe(
+        map((res) => res.albums.items),
+        // map((res) => res.albums), // PagingObject
+        // map((res) => res.items), // Album[]
+      );
   }
 }
