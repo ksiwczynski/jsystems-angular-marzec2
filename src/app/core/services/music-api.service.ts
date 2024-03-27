@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { API_URL } from '../tokens';
 import { Album } from './Album';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +14,30 @@ export class MusicApiService {
   http = inject(HttpClient);
 
   searchAlbums(query = 'batman') {
-    console.log(this.api_url, query);
+
+    // RECIPE - Unicast observable 1-1
+    const obj: Observable<Album[]> = this.http.get<Album[]>(`${this.api_url}search`,
+      {
+        headers: {
+          // 'Authorization' : 'Bearer Placki'
+        },
+        params: {
+          type: 'album',
+          q: query,
+        },
+        // reportProgress:false // upload / download
+      },
+    );
+
+    // Cooking 
+    const sub = obj.subscribe(console.log);
+    sub.unsubscribe()
     
-    this.http.get(`${this.api_url}/search`, {
-      headers: {
-        // 'Authorization' : 'Bearer Placki'
-      },
-      params: {
-        type: 'album',
-        q: query,
-      },
-      // reportProgress:false // upload / download
+    // Cooking
+    obj.subscribe({
+      next: (res) => console.log(res),
+      error: (error) => console.log(error),
+      complete: () => console.log('complete'),
     });
 
     return mockAlbums;
