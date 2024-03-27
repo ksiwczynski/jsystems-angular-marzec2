@@ -25,7 +25,7 @@ export class MusicApiService {
           type: 'album',
           q: query,
         },
-        // reportProgress:false // upload / download
+        // reportProgress:false // next: upload / download  + complete
       },
     );
 
