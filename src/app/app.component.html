@@ -1,9 +1,12 @@
-<div class="container">
-  <button mat-button class="float-end" (click)="login()">Login</button>
-  <app-clock />
+<app-navigation>
 
-  <h1 class="text-gray-600">Witaj {{ title.toLocaleUpperCase() + "!!!" }}</h1>
+  <ng-container ngProjectAs="toolbar">
+    <button mat-button (click)="login()">Login</button>
+    <app-clock />
+  </ng-container>
 
-  <!-- '' => PlaylistsComponent -->
-  <router-outlet />
-</div>
+  <div class="container">
+    <router-outlet />
+  </div>
+  
+</app-navigation>

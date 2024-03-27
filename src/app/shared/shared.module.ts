@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { ClockComponent } from './components/clock/clock.component';
 import { ContenteditableDirective } from './forms/contenteditable.directive';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { NavigationComponent } from './layouts/navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 export const SharedMaterialLibs = [
   MatListModule,
@@ -20,7 +23,7 @@ export const SharedMaterialLibs = [
   MatFormFieldModule,
   MatInputModule,
   MatIconModule,
-  MatCardModule
+  MatCardModule,
 ];
 
 @NgModule({
@@ -28,13 +31,22 @@ export const SharedMaterialLibs = [
     ClockComponent,
     ContenteditableDirective,
     PageNotFoundComponent,
+    NavigationComponent,
   ],
-  imports: [SharedMaterialLibs],
+  imports: [
+    SharedMaterialLibs,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+  ],
   exports: [
     SharedMaterialLibs,
     ClockComponent,
     ContenteditableDirective,
     PageNotFoundComponent,
+    NavigationComponent,
   ],
 })
 export class SharedModule {}

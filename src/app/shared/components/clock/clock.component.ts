@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
-  template: `<p>clock works!</p>`,
-  styles: [
-    `
-      p {
-        font-weight: bold;
-      }
-    `,
-  ],
+  template: `<div>{{ time }}</div>`,
+  styles: [``],
 })
-export class ClockComponent {}
+export class ClockComponent {
+  time = new Date().toLocaleTimeString();
+}

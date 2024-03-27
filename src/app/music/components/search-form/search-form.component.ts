@@ -50,12 +50,6 @@ export class SearchFormComponent {
       )
       // Multicast 1-* chaining
       .subscribe(this.search);
-
-    // .subscribe({
-    //   next: (q) => this.search.next(q),
-    //   error: (q) => this.search.error(q),
-    //   complete: () => this.search.complete(),
-    // });
   }
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
 
