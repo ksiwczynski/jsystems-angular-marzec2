@@ -9,23 +9,26 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { API_URL } from './core/tokens';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    // SpecialClientXProvidersModule
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    // Provider Override
+    {
+      provide: API_URL,
+      useValue: 'http://localhost.dev/fakeapi/',
+    },
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
