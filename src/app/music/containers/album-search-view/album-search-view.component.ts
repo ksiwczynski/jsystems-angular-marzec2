@@ -8,7 +8,16 @@ import {
   MatFormFieldDefaultOptions,
 } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, filter, map, switchMap, takeUntil } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  filter,
+  map,
+  share,
+  shareReplay,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
@@ -31,7 +40,6 @@ import { AsyncPipe } from '@angular/common';
 })
 export class AlbumSearchViewComponent {
   api = inject(MusicApiService);
-
   router = inject(Router);
   route = inject(ActivatedRoute);
 
@@ -40,15 +48,15 @@ export class AlbumSearchViewComponent {
     filter(Boolean),
   );
 
-  resultsChange?: Observable<AlbumResponse[]>;
-
-  ngOnInit(): void {
-
-    // AsyncPipe - switchMap when Observable changes (comp by ref)
-    this.resultsChange = this.queryChanges.pipe(
-      switchMap((q) => this.api.searchAlbums(q)),
-    );
-  }
+  resultsChange = this.queryChanges.pipe(
+    switchMap((q) => this.api.searchAlbums(q)),
+    share(),
+    // shareReplay()
+    // share({
+    //    connector: () => new ReplaySubject(1, 10_000)
+    //    resetOnRefCountZero: true
+    // })
+  );
 
   search(query = '') {
     this.router.navigate([], {
