@@ -112,3 +112,21 @@ https://rxviz.com/
 
 # JSON forms
 https://formly.dev/docs/guide/expression-properties
+
+# localize
+ng add @angular/localize
+
+```
+"i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pl-PL": "src/locale/messages.pl.xlf"
+        }
+      },
+```
+
+ng extract-i18n --help
+ng extract-i18n --output-path src/locale
+
+https://angular.io/guide/i18n-common-deploy#nginx-example
+https://github.com/ngx-translate/core 

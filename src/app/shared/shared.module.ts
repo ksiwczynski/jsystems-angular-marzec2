@@ -15,6 +15,7 @@ import { NavigationComponent } from './layouts/navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
+import { YesnoPipe } from './pipes/yesno.pipe';
 
 export const SharedMaterialLibs = [
   MatListModule,
@@ -25,6 +26,7 @@ export const SharedMaterialLibs = [
   MatInputModule,
   MatIconModule,
   MatCardModule,
+  YesnoPipe,
 ];
 
 @NgModule({
@@ -34,7 +36,7 @@ export const SharedMaterialLibs = [
     PageNotFoundComponent,
     NavigationComponent,
   ],
-  imports: [
+  imports: [ 
     SharedMaterialLibs,
     RouterModule,
     MatToolbarModule,

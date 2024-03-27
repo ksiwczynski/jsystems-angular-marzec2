@@ -5,6 +5,15 @@
   "projects": {
     "jsystems-rossmann-angular": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pl-PL": {
+            "translation":"src/locale/messages.pl-PL.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -24,6 +33,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": [
+              "pl-PL"
+            ],
             "outputPath": "dist/jsystems-rossmann-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -41,10 +53,10 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-              "prerender": true,
-              "ssr": {
-                "entry": "server.ts"
-              }
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {

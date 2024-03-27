@@ -29,8 +29,8 @@ export default function boostrap() {
         useValue: environment.api_url,
       },
       provideRouter(routes),
-      provideClientHydration(),
-      provideAnimationsAsync(),
+      // provideClientHydration(),
+      // provideAnimationsAsync(),
       provideOAuthClient(),
       provideHttpClient(
         withFetch(),

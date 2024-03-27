@@ -5,57 +5,29 @@
 >
   <mat-list>
     <mat-list-item lines="2">
-      <span matListItemTitle>Name</span>
+      <span matListItemTitle i18n>Name</span>
       <span>{{ playlist.name }}</span>
     </mat-list-item>
 
     <mat-list-item lines="2">
-      <span matListItemTitle>Public</span>
-
-      <span [style.color]="playlist.public ? 'red' : 'green'">{{
-        playlist.public ? "Yes" : "No"
-      }}</span>
-
-      <span [class]="playlist.public ? 'isPublic' : 'isPrivate'">{{
-        playlist.public ? "Yes" : "No"
-      }}</span>
+      <span matListItemTitle i18n>Public</span>
 
       <span
         [class.isPublic]="playlist.public"
         [class.isPrivate]="!playlist.public"
-        >{{ playlist.public ? "Yes" : "No" }}
-      </span>
-
-      <!-- 
-        s = new NgStyle({<span/>})
-        s.ngStyle = {
-          color: playlist.public ? 'red' : 'green',
-        }
-        s.ngDoCheck()
-       -->
-      <span
-        [ngStyle]="{
-          color: playlist.public ? 'red' : 'green'
-        }"
-        >{{ playlist.public ? "Yes" : "No" }}</span
-      >
-
-      <span
-        [ngClass]="{
-          isPublic: playlist.public,
-          isPrivate: !playlist.public
-        }"
-        >{{ playlist.public ? "Yes" : "No" }}
+        >{{ playlist.public | yesno }}
       </span>
     </mat-list-item>
 
     <mat-list-item lines="3">
-      <span matListItemTitle>Description</span>
+      <span matListItemTitle i18n>Description</span>
       <span>
         {{ playlist.description }}
       </span>
     </mat-list-item>
   </mat-list>
+
+  <img src="image.jpg" width="1" height="1" alt="playlist image" i18n-alt />
 
   <button mat-raised-button color="primary" (click)="edit.emit()">Edit</button>
 </div>
