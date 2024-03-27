@@ -12,7 +12,7 @@ export const authConfig: AuthConfig = {
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
-  clientId: '39745076a05d4b4d84e8bc53243c20c6',
+  clientId: 'b676b5457a054bdeb5b4b9a7c22c28c1',
 
   customQueryParams: {
     show_dialog: 'true',
