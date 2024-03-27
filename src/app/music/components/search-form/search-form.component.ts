@@ -10,6 +10,7 @@ import {
   NgForm,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-search-form',
@@ -20,7 +21,7 @@ import {
 })
 export class SearchFormComponent {
   searchForm = new FormGroup({
-    query: new FormControl('batman'),
+    query: new FormControl('batman', { nonNullable: true }),
     advanced: new FormGroup({
       type: new FormControl('album'),
       markets: new FormArray([
@@ -32,18 +33,20 @@ export class SearchFormComponent {
   });
 
   ngOnInit(): void {
-    
-    this.searchForm.get('query')?.valueChanges.pipe(
-      // minimum 3 length
-      // ???
-      
-      // no duplicates
-      // ???
-      
-      // wait 500ms before sending
-      // ???
-    )
-    .subscribe(console.log);
+    const field = this.searchForm.get('query');
+
+    field!.valueChanges
+      .pipe(
+        // minimum 3 length
+        filter((q) => q.length > 3),
+
+        // no duplicates
+        distinctUntilChanged(),
+
+        // wait 500ms before sending
+        debounceTime(500)
+      )
+      .subscribe(console.log);
   }
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray;
 
