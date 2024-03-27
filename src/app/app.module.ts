@@ -15,10 +15,12 @@ import {
   HttpClientModule,
   HttpHandler,
 } from '@angular/common/http';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    OAuthModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     SharedModule,
