@@ -102,3 +102,9 @@ ng g c music/components/search-form --standalone true
 ng g m core -m app
 ng g s core/services/music-api
 
+# RxJS
+obrazuje się za pomocą "marble diagrams”
+https://rxjs.dev/guide/operators
+http://rxmarbles.com/
+https://www.learnrxjs.io/
+https://rxviz.com/

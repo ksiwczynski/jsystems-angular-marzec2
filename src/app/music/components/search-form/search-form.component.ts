@@ -3,25 +3,33 @@ import {
   SharedMaterialLibs,
   SharedModule,
 } from '../../../shared/shared.module';
-import { NgForm } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [/* SharedModule, */ SharedMaterialLibs],
+  imports: [/* SharedModule, */ SharedMaterialLibs, ReactiveFormsModule],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.scss',
 })
 export class SearchFormComponent {
-  // @ViewChild(NgForm)
-  // formRef?: NgForm;
   
-  query = '';
+  searchForm = new FormGroup({
+    query: new FormControl('batman'),
+    advanced: new FormGroup({
+      type: new FormControl('album'),
+      markets: new FormArray([
+        new FormGroup({
+          code: new FormControl('PL'),
+        }),
+      ]),
+    }),
+  });
 
   @Output() search = new EventEmitter<string>();
 
   submit() {
-    this.search.emit(this.query)
+    this.search.emit(this.searchForm.value.query || '');
     // this.search.emit(this.formRef?.form.get('query')?.value);
   }
 }

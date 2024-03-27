@@ -46,11 +46,6 @@ export class MusicApiService {
       .pipe(
         map((res) => res.albums.items),
 
-        // switchMap(e => {
-        //   if(e == 'placki') return EMPTY
-        //   return of(e) 
-        // }),
-
         catchError((error, originalObs) => {
           this.errorHandler.handleError(error);
 

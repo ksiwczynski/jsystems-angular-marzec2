@@ -1,8 +1,8 @@
-<form (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="searchForm">
   <div class="relative">
     <mat-form-field class="mb-3 w-full" #fieldRef>
       <mat-label>Search</mat-label>
-      <input type="text" matInput [(ngModel)]="query" name="query" />
+      <input type="text" matInput formControlName="query" />
     </mat-form-field>
 
     <div class="absolute right-5 top-6">
@@ -11,4 +11,12 @@
       </button>
     </div>
   </div>
+  <div formGroupName="advanced">
+    <div formArrayName="markets">
+      <div [formGroupName]="'0'">
+        <input type="text" formControlName="code" />
+      </div>
+    </div>
+  </div>
+  <pre>{{ searchForm.value | json }}</pre>
 </form>
