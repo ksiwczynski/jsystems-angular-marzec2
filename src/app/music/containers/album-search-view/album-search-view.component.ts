@@ -8,7 +8,7 @@ import {
   MatFormFieldDefaultOptions,
 } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { exhaustMap, filter, map, mergeMap, switchMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -46,9 +46,10 @@ export class AlbumSearchViewComponent {
 
     queryChanges
       .pipe(
-        map((q) => this.api.searchAlbums(q)),
-
-        (obs) => obs, // Observable<Observable<AlbumResponse[]>>
+        // mergeMap((q) => this.api.searchAlbums(q)), // parallel 
+        // concatMap((q) => this.api.searchAlbums(q)), // in sequence
+        // exhaustMap((q) => this.api.searchAlbums(q)), // throttle (refresh)
+        switchMap((q) => this.api.searchAlbums(q)), // debounce (search)
       )
       .subscribe({
         next: (albums) => (this.results = albums),
